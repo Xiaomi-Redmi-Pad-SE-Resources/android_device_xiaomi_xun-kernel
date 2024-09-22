@@ -187,6 +187,7 @@ ktz8866_leds.ko
 hall_sensor.ko
 msm-mmrm.ko
 mmrm_test_module.ko
+nxp-nci.ko
 tz_log_dlkm.ko
 qcedev-mod_dlkm.ko
 qcrypto-msm_dlkm.ko

@@ -17,6 +17,8 @@ alias of:N*T*Cqcom,qcedev qcedev_mod_dlkm
 alias of:N*T*Cqcom,qcedevC* qcedev_mod_dlkm
 alias of:N*T*Cqcom,qcedev,context-bank qcedev_mod_dlkm
 alias of:N*T*Cqcom,qcedev,context-bankC* qcedev_mod_dlkm
+alias of:N*T*Cqcom,sn-nci nxp_nci
+alias of:N*T*Cqcom,sn-nciC* nxp_nci
 alias of:N*T*Cqcom,sc7180-aoss-qmp qcom_aoss
 alias of:N*T*Cqcom,sc7180-aoss-qmpC* qcom_aoss
 alias of:N*T*Cqcom,sc7280-aoss-qmp qcom_aoss

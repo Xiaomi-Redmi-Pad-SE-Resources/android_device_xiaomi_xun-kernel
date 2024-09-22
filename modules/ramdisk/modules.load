@@ -82,6 +82,4 @@ zram.ko
 zsmalloc.ko
 gaea.ko
 bootinfo.ko
-qrng_dlkm.ko
-qseecom_dlkm.ko
 swinfo.ko

@@ -14,6 +14,7 @@
 /vendor/lib/modules/stm_p_basic.ko: /vendor/lib/modules/stm_core.ko
 /vendor/lib/modules/qcom-dload-mode.ko:
 /vendor/lib/modules/qcedev-mod_dlkm.ko: /vendor/lib/modules/qce50_dlkm.ko /vendor/lib/modules/sps_drv.ko
+/vendor/lib/modules/nxp-nci.ko: /vendor/lib/modules/smcinvoke_dlkm.ko /vendor/lib/modules/qseecom_dlkm.ko
 /vendor/lib/modules/rpm_smd_cooling_device.ko:
 /vendor/lib/modules/mbhc_dlkm.ko: /vendor/lib/modules/nopmi-chg.ko /vendor/lib/modules/qcom-pmic-voter.ko
 /vendor/lib/modules/cpu_hotplug.ko:
@@ -63,7 +64,7 @@
 /vendor/lib/modules/msm_geni_serial.ko:
 /vendor/lib/modules/nopmi-chg.ko: /vendor/lib/modules/qcom-pmic-voter.ko
 /vendor/lib/modules/phy-msm-ssusb-qmp.ko:
-/vendor/lib/modules/msm_kgsl.ko: /vendor/lib/modules/msm_performance.ko /vendor/lib/modules/qcom-dcvs.ko /vendor/lib/modules/msm_sysstats.ko /vendor/lib/modules/mdt_loader.ko /vendor/lib/modules/qcom_va_minidump.ko
+/vendor/lib/modules/msm_kgsl.ko: /vendor/lib/modules/msm_performance.ko /vendor/lib/modules/qcom-dcvs.ko /vendor/lib/modules/mdt_loader.ko /vendor/lib/modules/qcom_va_minidump.ko
 /vendor/lib/modules/reboot-mode.ko:
 /vendor/lib/modules/ktz8866_leds.ko:
 /vendor/lib/modules/cx_ipeak_cdev.ko:
@@ -98,7 +99,7 @@
 /vendor/lib/modules/rmnet_ctl.ko:
 /vendor/lib/modules/bcl_pmic5.ko:
 /vendor/lib/modules/rdbg.ko:
-/vendor/lib/modules/icnss2.ko: /vendor/lib/modules/wlan_firmware_service.ko /vendor/lib/modules/qcom_ramdump.ko
+/vendor/lib/modules/icnss2.ko: /vendor/lib/modules/wlan_firmware_service.ko /vendor/lib/modules/cnss_prealloc.ko /vendor/lib/modules/qcom_ramdump.ko
 /vendor/lib/modules/heap_mem_ext_v01.ko:
 /vendor/lib/modules/qcom_sysmon.ko:
 /vendor/lib/modules/ucsi_glink.ko: /vendor/lib/modules/pmic_glink.ko
