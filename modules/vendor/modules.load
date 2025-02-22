@@ -76,6 +76,10 @@ usb_f_gsi.ko
 usb_f_diag.ko
 ucsi_glink.ko
 wusb3801x.ko
+tcpc_sc2150.ko
+tcpc_class.ko
+rt_pd_manager.ko
+tcpci_late_sync.ko
 pm8941-pwrkey.ko
 rtc-pm8xxx.ko
 i2c-msm-geni.ko
