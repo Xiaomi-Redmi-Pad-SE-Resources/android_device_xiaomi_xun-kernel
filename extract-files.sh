@@ -3,6 +3,7 @@
 set -e
 
 EXTRACT_OTA=../../../prebuilts/extract-tools/linux-x86/bin/ota_extractor
+LLVMSTRIP=../../../prebuilts/clang/kernel/linux-x86/clang-r416183b/bin/llvm-strip
 UNPACKBOOTIMG=../../../system/tools/mkbootimg/unpack_bootimg.py
 ROM_ZIP=$1
 
@@ -117,6 +118,10 @@ echo "Done. Extracting the system dlkm"
 
 echo "Copying all system dlkm modules"
 cp -r $out/lib/modules/*/* ./modules/system/
+
+# Strip kernel modules
+echo "Strip all kernel modules"
+for i in `find . -name *.ko`; do $LLVMSTRIP --strip-unneeded $i;done
 
 # Extract DTBO and DTBs
 echo "Extracting DTBO and DTBs"
