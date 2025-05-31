@@ -3,7 +3,6 @@
 set -e
 
 EXTRACT_OTA=../../../prebuilts/extract-tools/linux-x86/bin/ota_extractor
-MKDTBOIMG=../../../system/libufdt/utils/src/mkdtboimg.py
 UNPACKBOOTIMG=../../../system/tools/mkbootimg/unpack_bootimg.py
 ROM_ZIP=$1
 
@@ -48,7 +47,7 @@ if [[ -z $ROM_ZIP ]] || [[ ! -f $ROM_ZIP ]]; then
 fi
 
 # Clean and create needed directories
-for dir in ./modules/vendor_dlkm ./modules/system_dlkm ./modules/vendor_boot ./images ./images/dtbs; do
+for dir in ./modules/vendor ./modules/system ./modules/ramdisk ./dtbs; do
     rm -rf $dir
     mkdir -p $dir
 done
@@ -72,7 +71,7 @@ echo "Extracting at $out"
 unpackbootimg --boot_img $(get_path boot.img) --out $out --format mkbootimg
 
 echo "Done. Copying the kernel"
-cp $out/kernel ./images/kernel
+cp $out/kernel ./kernel
 echo "Done"
 
 # VENDOR_BOOT
@@ -90,7 +89,7 @@ cpio -i -F $out/vendor_ramdisk -D $out/ramdisk
 
 echo "Copying all ramdisk modules"
 for module in $(find $out/ramdisk -name "*.ko" -o -name "modules.load*" -o -name "modules.blocklist"); do
-	cp $module ./modules/vendor_boot/
+	cp $module ./modules/ramdisk/
 done
 
 # VENDOR_DLKM
@@ -104,7 +103,7 @@ echo "Done. Extracting the vendor dlkm"
 
 echo "Copying all vendor dlkm modules"
 for module in $(find $out/lib -name "*.ko" -o -name "modules.load*" -o -name "modules.blocklist"); do
-	cp $module ./modules/vendor_dlkm/
+	cp $module ./modules/vendor/
 done
 
 # SYSTEM_DLKM
@@ -117,21 +116,21 @@ fsck.erofs --extract="$out" $(get_path system_dlkm.img)
 echo "Done. Extracting the system dlkm"
 
 echo "Copying all system dlkm modules"
-cp -r $out/lib/modules/6.1* ./modules/system_dlkm/
+cp -r $out/lib/modules/*/* ./modules/system/
 
 # Extract DTBO and DTBs
 echo "Extracting DTBO and DTBs"
 
-curl -sSL "https://raw.githubusercontent.com/PabloCastellano/extract-dtb/master/extract_dtb/extract_dtb.py" > ${extract_out}/extract_dtb.py
+curl -sSL "https://raw.githubusercontent.com/PabloCastellano/extract-dtb/ab824ac0993efc03a3a9201c5c03f54fda4bcfd0/extract_dtb/extract_dtb.py" > ${extract_out}/extract_dtb.py
 
 # Copy DTB
 python3 "${extract_out}/extract_dtb.py" "${extract_out}/vendor_boot-out/dtb" -o "${extract_out}/dtbs" > /dev/null
 find "${extract_out}/dtbs" -type f -name "*.dtb" \
-    -exec cp {} ./images/dtbs/ \; \
+    -exec cp {} ./dtbs/ \; \
     -exec printf "  - dtbs/" \; \
     -exec basename {} \;
 
-cp -f "${extract_out}/dtbo.img" ./images/dtbo.img
+cp -f "${extract_out}/dtbo.img" ./dtbo.img
 echo "Done"
 
 rm -rf $extract_out
