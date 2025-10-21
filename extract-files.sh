@@ -120,8 +120,8 @@ echo "Copying all system dlkm modules"
 cp -r $out/lib/modules/*/* ./modules/system/
 
 # Strip kernel modules
-echo "Strip all kernel modules"
-for i in `find . -name *.ko`; do $LLVMSTRIP --strip-unneeded $i;done
+echo "Strip wifi kernel modules"
+for i in `find . -name qca_cld3_wlan.ko`; do $LLVMSTRIP --strip-unneeded $i;done
 
 # Extract DTBO and DTBs
 echo "Extracting DTBO and DTBs"
